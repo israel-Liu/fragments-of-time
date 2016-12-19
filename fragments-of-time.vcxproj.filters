@@ -13,5 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="unique_ptr">
+      <UniqueIdentifier>{dcec5c36-a66e-4a23-87b3-92bf10763833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="example">
+      <UniqueIdentifier>{23e97d2d-da3c-45a6-9a9b-1e843277080c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="unique_ptr/unique_ptr.h">
+      <Filter>unique_ptr</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="example/unique_ptr_example_.cpp">
+      <Filter>example</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
