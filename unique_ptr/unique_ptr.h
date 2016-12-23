@@ -1,7 +1,9 @@
 #pragma once
 #include <memory>
 
+#ifndef noexcept
 #define noexcept _NOEXCEPT
+#endif
 
 namespace hinata {
 
@@ -82,7 +84,12 @@ template <typename T, typename D = default_delete<T>>
         }
 
         // modifiers
-
+        void swap(unique_ptr& rhs) noexcept
+        {
+            using std::swap;
+            swap(ptr_, rhs.ptr_);
+            swap(del_, rhs.del_);
+        }
 
         // disable copy from lvalue
         unique_ptr(const unique_ptr&) = delete;
