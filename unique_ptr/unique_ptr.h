@@ -52,6 +52,13 @@ template <typename T, typename D = default_delete<T>>
             get_deleter()(ptr_);
         }
 
+        //// assignment
+        //unique_ptr& operator=(unique_ptr&& rhs)
+        //{
+        //    swap(*this, rhs);
+        //    return *this;
+        //}
+
         // observers
         T& operator*() noexcept
         {   // Requires: get() != nullptr.

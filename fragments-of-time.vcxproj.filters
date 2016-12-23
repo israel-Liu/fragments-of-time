@@ -19,10 +19,16 @@
     <Filter Include="example">
       <UniqueIdentifier>{23e97d2d-da3c-45a6-9a9b-1e843277080c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="utility">
+      <UniqueIdentifier>{6cba1159-e0e9-4b3e-a79d-4e3814559d98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="unique_ptr/unique_ptr.h">
       <Filter>unique_ptr</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\ref_count.h">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

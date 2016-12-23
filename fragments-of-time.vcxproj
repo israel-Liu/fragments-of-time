@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="unique_ptr/unique_ptr.h" />
+    <ClInclude Include="utility\ref_count.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="example/unique_ptr_example_.cpp" />
