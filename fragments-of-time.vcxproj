@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="strings\string.h" />
     <ClInclude Include="unique_ptr/unique_ptr.h" />
     <ClInclude Include="utility\ref_count.h" />
   </ItemGroup>

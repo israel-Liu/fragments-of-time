@@ -22,6 +22,9 @@
     <Filter Include="utility">
       <UniqueIdentifier>{6cba1159-e0e9-4b3e-a79d-4e3814559d98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="strings">
+      <UniqueIdentifier>{c8e70b42-9b88-48bd-907e-de619e726e0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="unique_ptr/unique_ptr.h">
@@ -29,6 +32,9 @@
     </ClInclude>
     <ClInclude Include="utility\ref_count.h">
       <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\string.h">
+      <Filter>strings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

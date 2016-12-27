@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 
+#include "strings/string.h"
 #include "unique_ptr/unique_ptr.h"
 #include "utility/ref_count.h"
 
@@ -19,6 +20,16 @@ int main(int argc, char** argv)
     hinata::ref_count<char> rc_c;
     hinata::ref_count<char> rc_c_copy;
     rc_c_copy = rc_c;
+
+    // string
+    wchar_t* s_n_c = new wchar_t[20];
+    s_n_c = L"new_ten_char";
+    std::basic_string<wchar_t> w_str(s_n_c);
+    std::cout << w_str.length() << std::endl;
+
+    hinata::string<char> str_c("hinata::string<char>");
+    hinata::string<wchar_t> str_wc(L"hinata::string<wchar_t>");
+    //std::cout << str_c << std::endl;
 
     return 0;
 }
