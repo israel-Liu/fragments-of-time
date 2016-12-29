@@ -4,10 +4,12 @@
 #define noexcept _NOEXCEPT
 #endif
 
+#include "utility/ref_count.h"
+
 namespace hinata {
 
 template <typename T>
-    class string
+    class string // : public ref_count // String is a ref_count or has a ref_count, which one is better
     {
     public:
         // constructors
@@ -15,6 +17,8 @@ template <typename T>
 
         string(const string& rhs)
         {
+            rhs.ref_cnt_.add_ref();
+            ref_cnt_ = rhs.ref_cnt_;
             data_ = rhs.data_;
             size_ = rhs.size_;
         }
@@ -48,6 +52,7 @@ template <typename T>
             data_ = nullptr;
         }
 
+    private:
         // Static function internal used
         static bool eq(const T& lhs, const T& rhs)
         {
@@ -73,7 +78,9 @@ template <typename T>
         }
 
     private:
-        T* data_            = nullptr;
-        std::size_t size_   = 0;
+        T* data_                = nullptr;
+        std::size_t size_       = 0;
+        // String is a ref_count or has a ref_count, which one is better
+        ref_count& ref_cnt_     = ref_count(); // 引用成员被初始化为临时成员，临时成员在构造函数退出后就不再存在
     };
 }
