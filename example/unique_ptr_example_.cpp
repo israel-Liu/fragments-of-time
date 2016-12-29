@@ -14,11 +14,11 @@ int main(int argc, char** argv)
     std::cout << *up << std::endl;  // print whole string
 
     // ref_count
-    hinata::ref_count<int> rc_i;
-    hinata::ref_count<int> rc_i_copy(rc_i);
+    hinata::ref_count rc_i;
+    hinata::ref_count rc_i_copy(rc_i);
 
-    hinata::ref_count<char> rc_c;
-    hinata::ref_count<char> rc_c_copy;
+    hinata::ref_count rc_c;
+    hinata::ref_count rc_c_copy;
     rc_c_copy = rc_c;
 
     // string
