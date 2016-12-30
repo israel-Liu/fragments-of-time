@@ -10,27 +10,19 @@ class ref_count
 {
 public:
     ref_count()
-        : cnt_(new std::size_t(1))
     {}
 
     ref_count(const ref_count& rc)
-        : cnt_(rc.cnt_)
     {
-        ++*cnt_;
+        *cnt_ = ++*rc.cnt_;
     }
 
     ~ref_count()
-    {
-        //release();
-    }
+    {}
 
     // assignment
     ref_count& operator=(const ref_count& rhs)
-    {
-        //if (this->cnt_ == rhs.cnt_) {
-        //    return;
-        //}
-
+    {   // if (*this == rhs) { return; }
         ++*rhs.cnt_;
 
         release();
@@ -47,11 +39,6 @@ public:
         swap(cnt_, rhs.cnt_);
     }
 
-    //void add_ref()
-    //{
-    //    ++*cnt_;
-    //}
-
     void release()
     {
         if (cnt_ && --*cnt_ == 0) {
@@ -66,7 +53,7 @@ public:
     }
 
 private:
-    std::size_t* cnt_ = nullptr;
+    std::size_t* cnt_ = new std::size_t(1);    // InterlockedIncrement
 };
 
 } // namesapce hinata
