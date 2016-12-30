@@ -12,8 +12,8 @@ public:
     ref_count()
     {}
 
-    explicit ref_count(std::size_t* p_size_t)
-	{}
+    explicit ref_count(std::size_t*)
+    {}
     
     ref_count(const ref_count& rc)
     {
