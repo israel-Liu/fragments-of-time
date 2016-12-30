@@ -93,6 +93,6 @@ template <typename T>
     private:
         T* data_                    = nullptr;
         std::size_t size_           = 0;
-        ref_count ref_cnt_          = ref_count();
+        ref_count ref_cnt_;//         = ref_count();
     };
 }
