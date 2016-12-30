@@ -21,21 +21,19 @@ public:
 
     ~ref_count()
     {
-        if (--*cnt_ == 0) {
-            delete cnt_;
-        }
-
-        cnt_ = nullptr;
+        //release();
     }
 
     // assignment
     ref_count& operator=(const ref_count& rhs)
     {
+        //if (this->cnt_ == rhs.cnt_) {
+        //    return;
+        //}
+
         ++*rhs.cnt_;
 
-        if (--*cnt_ == 0) {
-            delete cnt_;
-        }
+        release();
 
         cnt_ = rhs.cnt_;
 
@@ -49,18 +47,22 @@ public:
         swap(cnt_, rhs.cnt_);
     }
 
-    void add_ref()
-    {
-        ++*cnt_;
-    }
+    //void add_ref()
+    //{
+    //    ++*cnt_;
+    //}
 
     void release()
     {
-        if (--*cnt_ == 0) {
+        if (cnt_ && --*cnt_ == 0) {
             delete cnt_;
+            cnt_ = nullptr;
         }
+    }
 
-        cnt_ = nullptr;
+    std::size_t* get_count()
+    {
+        return cnt_;
     }
 
 private:

@@ -8,6 +8,8 @@
 
 namespace hinata {
 
+//ref_count ref_cnt;
+
 template <typename T>
     class string // : public ref_count // String is a ref_count or has a ref_count, which one is better
     {
@@ -17,7 +19,7 @@ template <typename T>
 
         string(const string& rhs)
         {
-            rhs.ref_cnt_.add_ref();
+            // use ref_count& operator=
             ref_cnt_ = rhs.ref_cnt_;
             data_ = rhs.data_;
             size_ = rhs.size_;
@@ -36,20 +38,21 @@ template <typename T>
                 return;
             }
 
+            release();
+
             return (*this = string(rhs));
         }
 
         string& operator=(const T* str)
         {
+            release();
+
             return (*this = string(str));
         }
 
         ~string()
         {
-            if (!data_) {
-                delete data_;
-            }
-            data_ = nullptr;
+            release();
         }
 
     private:
@@ -78,9 +81,21 @@ template <typename T>
         }
 
     private:
-        T* data_                = nullptr;
-        std::size_t size_       = 0;
-        // String is a ref_count or has a ref_count, which one is better
-        ref_count& ref_cnt_     = ref_count(); // 引用成员被初始化为临时成员，临时成员在构造函数退出后就不再存在
+        void release()
+        {
+            ref_cnt_.release();
+            if (!ref_cnt_.get_count() && data_) {
+                delete data_;
+                data_ = nullptr;
+                size_ = 0;
+            }
+        }
+
+    private:
+        T* data_                    = nullptr;
+        std::size_t size_           = 0;
+        // 引用成员被初始化为临时成员，临时成员在构造函数退出后就不再存在
+        // ref_count& ref_cnt_      = ref_count();
+        ref_count ref_cnt_          = ref_count();
     };
 }
