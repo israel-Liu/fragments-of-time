@@ -1,16 +1,16 @@
 /************************************************************************************
-    //sample 1
-    hinata::Aggregate<int> agg;
+//sample 1
+hinata::Aggregate<int> agg;
 
-    for (int i = 0; i < 10; ++i) {
-    agg.add(i);
-    }
+for (int i = 0; i < 10; ++i) {
+	agg.add(i);
+}
 
-    hinata::Iterator<int, hinata::Aggregate<int> >* it = agg.createIterator();
+hinata::Iterator<int, hinata::Aggregate<int> >* it = agg.createIterator();
 
-    for(it->first(); !it->isDone(); it->next()) {
-    std::cout << *it->current() << std::endl;
-    }
+for(it->first(); !it->isDone(); it->next()) {
+	std::cout << *it->current() << std::endl;
+}
 *************************************************************************************/
 #pragma once
 
