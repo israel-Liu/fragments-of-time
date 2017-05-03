@@ -392,6 +392,64 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         return 0;
     }
 
+    case WM_KEYDOWN:
+    {
+        switch (wParam) {
+        case VK_HOME:
+        {
+            ::SendMessage(hwnd, WM_VSCROLL, SB_TOP, 0);
+            break;
+        }
+
+        case VK_END:
+        {
+            ::SendMessage(hwnd, WM_VSCROLL, SB_BOTTOM, 0);
+            break;
+        }
+
+        case VK_PRIOR:
+        {
+            ::SendMessage(hwnd, WM_VSCROLL, SB_PAGEUP, 0);
+            break;
+        }
+
+        case VK_NEXT:
+        {
+            ::SendMessage(hwnd, WM_VSCROLL, SB_PAGEDOWN, 0);
+            break;
+        }
+
+        case VK_UP:
+        {
+            ::SendMessage(hwnd, WM_VSCROLL, SB_LINEUP, 0);
+            break;
+        }
+
+        case VK_DOWN:
+        {
+            ::SendMessage(hwnd, WM_VSCROLL, SB_LINEDOWN, 0);
+            break;
+        }
+
+        case VK_LEFT:
+        {
+            ::SendMessage(hwnd, WM_HSCROLL, SB_PAGEUP, 0);
+            break;
+        }
+
+        case VK_RIGHT:
+        {
+            ::SendMessage(hwnd, WM_HSCROLL, SB_PAGEDOWN, 0);
+            break;
+        }
+
+        default:
+            break;
+        }
+
+        return 0;
+    }
+
     case WM_PAINT:
     {
         PAINTSTRUCT cPs;
