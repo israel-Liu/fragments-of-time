@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <strsafe.h>
 
 #include "resource.h"
 
@@ -6,6 +7,7 @@ namespace {
 
 const int ID_EDIT = 1;
 static wchar_t szAppName[] = L"hinata_notepad";
+static HWND hwnd_edit;
 
 }
 
@@ -63,10 +65,56 @@ int AskConfirmation(HWND hwnd)
     return MessageBox(hwnd, L"Really want to close hinata_notepad?", szAppName, MB_YESNO | MB_ICONQUESTION);
 }
 
+DWORD ListFilesInDir()
+{
+    wchar_t szDir[] = L"D:\\Zoom\\trunk\\Client\\src\\application\\windows\\Images\\*";
+    //StringCchCat(szDir, MAX_PATH, L"\\*");
+
+    WIN32_FIND_DATA ffd;
+    HANDLE hFind = FindFirstFile(szDir, &ffd);
+
+    // List all the files in the directory with some info about them.
+    LARGE_INTEGER filesize;
+    wchar_t szFileName[MAX_PATH - 11] = {};
+    wchar_t szFileNameList[MAX_PATH * 1000] = {};
+    int cnt = 0;
+    do {
+
+        memset(szFileName, 0, sizeof(szFileName));
+
+        if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+            //_tprintf(TEXT("  %s   <DIR>\n"), ffd.cFileName);
+        } else {
+            filesize.LowPart = ffd.nFileSizeLow;
+            filesize.HighPart = ffd.nFileSizeHigh;
+            //StringCbPrintf(szFileName, (MAX_PATH - 11) * sizeof(wchar_t),
+            //               L"  %s   %ld bytes\r\n\r\n", ffd.cFileName, filesize.QuadPart);
+
+            StringCbPrintf(szFileName, (MAX_PATH - 11) * sizeof(wchar_t), L"%s\r\n\r\n", ffd.cFileName);
+
+            StringCbCat(szFileNameList, (MAX_PATH * 1000) * sizeof(wchar_t), szFileName);
+
+            cnt++;
+
+            SendMessage((HWND)0x00191A56, WM_SETTEXT, 0, (LPARAM)ffd.cFileName);
+            SendMessage((HWND)0x000A1832, WM_COMMAND, MAKEWPARAM(1, BN_CLICKED), (LPARAM)0x00071216);
+            //Sleep(10000);
+        }
+    } while (FindNextFile(hFind, &ffd) != 0);
+
+    StringCbPrintf(szFileName, (MAX_PATH - 11) * sizeof(wchar_t), L"%d\r\n\r\n", cnt);
+
+    StringCbCat(szFileNameList, (MAX_PATH * 1000) * sizeof(wchar_t), szFileName);
+
+    SendMessage(hwnd_edit, WM_SETTEXT, 0, (LPARAM)szFileNameList);
+
+    FindClose(hFind);
+
+    return GetLastError();
+}
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    static HWND hwnd_edit;
-
     switch (msg) {
     case WM_CREATE:
     {
@@ -132,9 +180,15 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             case IDM_FILE_OPEN:
             case IDM_FILE_SAVE:
             case IDM_FILE_SAVE_AS:
-            case IDM_FILE_PRINT:
             {
                 MessageBeep(0);
+
+                return 0;
+            }
+
+            case IDM_FILE_PRINT:
+            {
+                ListFilesInDir();
 
                 return 0;
             }
