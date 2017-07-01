@@ -18,18 +18,18 @@ public class ObserverPatternEx
 	public static void Main(String[] args)
 	{
 		Console.WriteLine("***Observer Pattern Demo***\n");
-        Observer o = new Observer();
-        Subject sub = new Subject();
-        sub.Register(o);
-        Console.WriteLine("Setting Flag = 5");
-        sub.SetFlag(5);
-        Console.WriteLine("Setting Flag = 25");
-        sub.SetFlag(25);
-        sub.Unregister(o);
-        
-        // No notification this time to o Since it is unregistered.
-        Console.WriteLine("Setting Flag = 50");
-        sub.SetFlag(50);
+		Observer o = new Observer();
+		Subject sub = new Subject();
+		sub.Register(o);
+		Console.WriteLine("Setting Flag = 5");
+		sub.SetFlag(5);
+		Console.WriteLine("Setting Flag = 25");
+		sub.SetFlag(25);
+		sub.Unregister(o);
+
+		// No notification this time to o Since it is unregistered.
+		Console.WriteLine("Setting Flag = 50");
+		sub.SetFlag(50);
 	}
 
 }
