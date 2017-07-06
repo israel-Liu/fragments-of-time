@@ -23,6 +23,9 @@
     <ClInclude Include="singleton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="singleton_pattern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="singleton.cd" />

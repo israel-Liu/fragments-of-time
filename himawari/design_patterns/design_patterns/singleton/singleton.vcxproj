@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="singleton.h" />
+    <ClInclude Include="singleton_pattern.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="singleton.cd" />
