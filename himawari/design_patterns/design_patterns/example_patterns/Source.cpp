@@ -4,6 +4,7 @@
 #include "template_pattern/template_pattern.h"
 //#include "observer_pattern.h"
 #include "singleton/singleton_pattern.h"
+#include "template_pattern/template.h"
 
 int main(int agrc, char** agrv)
 {
@@ -43,8 +44,22 @@ int main(int agrc, char** agrv)
     //delete current_b;
     //delete wdata;
 
-    StringSingleton::Instance().SetString("StringSingleton");
-    std::cout << StringSingleton::Instance().GetString() << std::endl;
+    //StringSingleton::Instance().SetString("StringSingleton");
+    //std::cout << StringSingleton::Instance().GetString() << std::endl;
+
+    Game* game = nullptr;
+
+    Chess chess;
+    game = &chess;
+    for (unsigned i = 0; i < 100; ++i) {
+        game->PlayOneGame();
+    }
+
+    Monopoly monopoly;
+    game = &monopoly;
+    for (unsigned i = 0; i < 100; ++i) {
+        game->PlayOneGame();
+    }
 
     return 0;
 }
