@@ -5,6 +5,7 @@
 //#include "observer_pattern.h"
 #include "singleton/singleton_pattern.h"
 #include "template_pattern/template.h"
+#include "decorator_pattern/decorator.h"
 
 int main(int agrc, char** agrv)
 {
@@ -47,19 +48,36 @@ int main(int agrc, char** agrv)
     //StringSingleton::Instance().SetString("StringSingleton");
     //std::cout << StringSingleton::Instance().GetString() << std::endl;
 
-    Game* game = nullptr;
+    //Game* game = nullptr;
 
-    Chess chess;
-    game = &chess;
-    for (unsigned i = 0; i < 100; ++i) {
-        game->PlayOneGame();
-    }
+    //Chess chess;
+    //game = &chess;
+    //for (unsigned i = 0; i < 100; ++i) {
+    //    game->PlayOneGame();
+    //}
 
-    Monopoly monopoly;
-    game = &monopoly;
-    for (unsigned i = 0; i < 100; ++i) {
-        game->PlayOneGame();
-    }
+    //Monopoly monopoly;
+    //game = &monopoly;
+    //for (unsigned i = 0; i < 100; ++i) {
+    //    game->PlayOneGame();
+    //}
+
+    // Create our car that we want to buy
+    Car* car = new CarModelA();
+    cout << "Base model of " << car->GetDescription() << " costs $" << car->GetCost() << endl;
+
+    // Who wants base model let's add some more features
+    car = new Navigation(car);
+    cout << car->GetDescription() << " will cost you $" << car->GetCost() << endl;
+
+    car = new PremiumSoundSystem(car);
+    car = new ManualTransmission(car);
+    cout << car->GetDescription() << " will cost you $" << car->GetCost() << endl;
+
+    // WARNING! Here we leak the CarModelA, Navigation and PremiumSoundSystem objects!
+    // Either we delete them explicitly or rewrite the Decorators to take ownership
+    // and delete their cars when destroyed.
+    delete car;
 
     return 0;
 }

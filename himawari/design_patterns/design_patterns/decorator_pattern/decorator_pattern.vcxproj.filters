@@ -18,5 +18,8 @@
     <ClInclude Include="decorator_pattern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="decorator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
