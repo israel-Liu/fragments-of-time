@@ -6,6 +6,7 @@
 #include "singleton/singleton_pattern.h"
 #include "template_pattern/template.h"
 #include "decorator_pattern/decorator.h"
+#include "strategy_pattern/policy_pattern.h"
 
 int main(int agrc, char** agrv)
 {
@@ -62,22 +63,37 @@ int main(int agrc, char** agrv)
     //    game->PlayOneGame();
     //}
 
-    // Create our car that we want to buy
-    Car* car = new CarModelA();
-    cout << "Base model of " << car->GetDescription() << " costs $" << car->GetCost() << endl;
+    //// Create our car that we want to buy
+    //Car* car = new CarModelA();
+    //cout << "Base model of " << car->GetDescription() << " costs $" << car->GetCost() << endl;
 
-    // Who wants base model let's add some more features
-    car = new Navigation(car);
-    cout << car->GetDescription() << " will cost you $" << car->GetCost() << endl;
+    //// Who wants base model let's add some more features
+    //car = new Navigation(car);
+    //cout << car->GetDescription() << " will cost you $" << car->GetCost() << endl;
 
-    car = new PremiumSoundSystem(car);
-    car = new ManualTransmission(car);
-    cout << car->GetDescription() << " will cost you $" << car->GetCost() << endl;
+    //car = new PremiumSoundSystem(car);
+    //car = new ManualTransmission(car);
+    //cout << car->GetDescription() << " will cost you $" << car->GetCost() << endl;
 
-    // WARNING! Here we leak the CarModelA, Navigation and PremiumSoundSystem objects!
-    // Either we delete them explicitly or rewrite the Decorators to take ownership
-    // and delete their cars when destroyed.
-    delete car;
+    //// WARNING! Here we leak the CarModelA, Navigation and PremiumSoundSystem objects!
+    //// Either we delete them explicitly or rewrite the Decorators to take ownership
+    //// and delete their cars when destroyed.
+    //delete car;
+
+    ConcreteStrategyA concrete_strategy_a;
+    ConcreteStrategyB concrete_strategy_b;
+
+    Context context_a(&concrete_strategy_a);
+    Context context_b(&concrete_strategy_b);
+
+    context_a.execute();
+    context_b.execute();
+
+    context_a.set_strategy(&concrete_strategy_b);
+    context_b.set_strategy(&concrete_strategy_a);
+
+    context_a.execute();
+    context_b.execute();
 
     return 0;
 }

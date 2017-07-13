@@ -18,5 +18,8 @@
     <ClInclude Include="strategy_pattern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="policy_pattern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
