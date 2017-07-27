@@ -7,6 +7,7 @@
 #include "template_pattern/template.h"
 #include "decorator_pattern/decorator.h"
 #include "strategy_pattern/policy_pattern.h"
+#include "command_pattern/command_pattern.h"
 
 int main(int agrc, char** agrv)
 {
@@ -80,20 +81,33 @@ int main(int agrc, char** agrv)
     //// and delete their cars when destroyed.
     //delete car;
 
-    ConcreteStrategyA concrete_strategy_a;
-    ConcreteStrategyB concrete_strategy_b;
+    //ConcreteStrategyA concrete_strategy_a;
+    //ConcreteStrategyB concrete_strategy_b;
 
-    Context context_a(&concrete_strategy_a);
-    Context context_b(&concrete_strategy_b);
+    //Context context_a(&concrete_strategy_a);
+    //Context context_b(&concrete_strategy_b);
 
-    context_a.execute();
-    context_b.execute();
+    //context_a.execute();
+    //context_b.execute();
 
-    context_a.set_strategy(&concrete_strategy_b);
-    context_b.set_strategy(&concrete_strategy_a);
+    //context_a.set_strategy(&concrete_strategy_b);
+    //context_b.set_strategy(&concrete_strategy_a);
 
-    context_a.execute();
-    context_b.execute();
+    //context_a.execute();
+    //context_b.execute();
+
+    Receiver* receiver = new Receiver();
+    Invoke* inv = new Invoke();
+    UndoCommand* undo_cmd = new UndoCommand(receiver);
+    RedoCommand* redo_cmd = new RedoCommand(receiver);
+
+    inv->ExecuteCommand(undo_cmd);
+    inv->ExecuteCommand(redo_cmd);
+
+    delete receiver;
+    delete inv;
+    delete undo_cmd;
+    delete redo_cmd;
 
     return 0;
 }

@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "strategy_pattern", "strateg
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adapter_pattern", "adapter_pattern\adapter_pattern.vcxproj", "{7C27E5E1-F636-400E-A826-B6C5C69C169F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "command_pattern", "command_pattern\command_pattern.vcxproj", "{403E0859-0BB3-4E9E-8078-85ECABF4F593}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,16 @@ Global
 		{7C27E5E1-F636-400E-A826-B6C5C69C169F}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{7C27E5E1-F636-400E-A826-B6C5C69C169F}.Release|Win32.ActiveCfg = Release|Win32
 		{7C27E5E1-F636-400E-A826-B6C5C69C169F}.Release|Win32.Build.0 = Release|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Debug|Win32.ActiveCfg = Debug|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Debug|Win32.Build.0 = Debug|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Release|Any CPU.ActiveCfg = Release|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Release|Win32.ActiveCfg = Release|Win32
+		{403E0859-0BB3-4E9E-8078-85ECABF4F593}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
