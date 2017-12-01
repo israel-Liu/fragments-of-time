@@ -76,7 +76,7 @@ inline int AskConfirmation(HWND hwnd)
 
 DWORD ListFilesInDir()
 {
-    wchar_t szDir[] = L"D:\\Zoom\\trunk\\Client\\src\\application\\windows\\Images\\zm_emoji\\*";
+    wchar_t szDir[] = L"C:\\Users\\Israe\\Desktop\\flag\\*";
     //StringCchCat(szDir, MAX_PATH, L"\\*");
 
     WIN32_FIND_DATA ffd;
@@ -99,7 +99,7 @@ DWORD ListFilesInDir()
             //StringCbPrintf(szFileName, (MAX_PATH - 11) * sizeof(wchar_t),
             //               L"  %s   %ld bytes\r\n\r\n", ffd.cFileName, filesize.QuadPart);
 
-            StringCbPrintf(szFileName, (MAX_PATH - 11) * sizeof(wchar_t), L"%s\r\n\r\n", ffd.cFileName);
+            StringCbPrintf(szFileName, (MAX_PATH - 11) * sizeof(wchar_t), L"%s                  ZPIMGRES                \"..\\\\..\\\\Images\\\\flags\\\\%s\"\r\n", ffd.cFileName, ffd.cFileName);
 
             StringCbCat(szFileNameList, (MAX_PATH * 1000) * sizeof(wchar_t), szFileName);
 
