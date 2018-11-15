@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Football.cpp" />
+    <ClCompile Include="Petya and Strings.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9563FFBE-D493-4724-8390-A7F7279E1E1B}</ProjectGuid>
