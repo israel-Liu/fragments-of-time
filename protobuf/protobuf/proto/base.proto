@@ -1,0 +1,146 @@
+package tms;
+// 在线状态
+enum OnlineState
+{
+    OnlineState_Offline = 0;
+	OnlineState_Online = 1;
+}
+
+enum TargetType{
+    TargetType_User = 0;
+	TargetType_Group = 1;
+}
+
+enum cmd
+{
+	n_AnsInfo = 0;
+    // talk msg
+	n_TalkMsg = 1;
+		
+	n_TalkMsgAns = 2;
+	n_PullTalkMsgReq = 3;
+	n_MsgInfoNotify = 11;
+		
+	// user	
+	n_TargetInfo = 34;		
+	n_FriendInfo = 35;
+	n_UserTargets = 36;
+	n_UserPrivateInfo = 37;
+	n_UserInfo=38;
+	n_UserOnlineInfo = 39;
+	n_LoginInfo = 40;
+	n_RegisterInfo = 41;
+	n_UserInfoReq=42;
+	n_TargetsQuery = 43;
+	n_UpdateUserInfo = 44;
+	n_TargetsAdd = 45;
+	n_UpdateTargetInfo = 46;
+	
+	n_StateServerReq = 47;
+	
+	// old
+	n_UserInfo_Old = 48;
+	
+	n_UTargetInfos = 49;
+	n_SysTargetInfo = 50;
+	n_SysTargetInfoList = 51;
+	n_SysGroupInfo = 52;
+	n_SysGroupInfoList = 53;
+	n_SysUserInfo = 54;
+	n_SysTalkMsg = 55;
+	n_SysTalkMsgList = 56;
+	n_SysTargetMsgInfo = 57;
+	n_SysTargetMsgInfoList = 58;
+	n_SysMemberInfo = 59;
+	n_SysMemberInfoList = 60;
+	n_SysGTalkInfoList = 61;
+	
+	n_SysUserPrivateInfo = 71;
+	n_MemberList = 72;
+	n_SysUserPrivateInfoList = 73;
+	
+	// notify
+	n_UserInfoNotify = 101;
+	n_UserBaseInfoNotify = 102;
+	n_TargetsAddNotify = 103;
+	n_TargetsNotify = 104;
+	n_UserOnlineNotify = 105;
+	n_JoinGTalk = 110;
+	n_AnsJoinGTalk = 111;
+	n_QuitGTalk = 112;
+	
+	// server
+	n_ReqHeartbeat = 1001;
+	n_AnsHeartbeat = 1002;
+	n_ServerTime = 1003;
+	n_FileLoadData = 1007;
+	n_FileLoadInfo = 1008;
+	
+	n_UserOnlineNotifyList = 1020;
+	n_TalkMsgBaseList = 1021;
+	n_ChatMsgBaseList = 1022;
+	n_UserMsgIDList = 1023;
+	n_ServerInfo = 1024;
+	n_ServerInfoList = 1025;
+	n_ServerOut = 1026;
+	n_TargtServerIDList = 1027;
+	n_UserLoginFlagList = 1028;
+	n_TargetOnlineInfo = 1029;
+	
+	n_ChatUser = 1030;
+}
+
+// 应答信息
+message AnsInfo
+{
+    required uint32 uError = 1;
+	required tms.cmd tCmd = 2;
+	optional string strAccountNo=3;
+	required uint32 uAccountID = 4;
+}
+
+
+// Targets 信息
+message TargetInfo
+{
+    required string strAccountNo = 1; // 帐号
+    required bytes strNickName = 2; // 昵称
+    required uint32 nFace = 3[default = 0]; // ..
+}
+
+message Targets
+{
+    required uint32 uTargetID = 1[default = 0];
+    required TargetInfo TargetInfos = 2;
+}
+
+message UTarget
+{
+    required uint32 uTargetID = 1[default = 0];
+	optional uint32 uRight = 2[default = 0]; //权限
+	optional bytes selfparam = 3;
+}
+
+message MemberInfo
+{
+    optional uint32 uRight = 2[default = 0]; //权限
+	optional bytes selfparam = 3;
+}
+
+message Member
+{
+    required uint32 uTargetID = 1[default = 0];
+    optional MemberInfo MemberInfos = 2; //权限
+}
+message MemberList
+{
+    required uint32 uVersion =1[default = 0];
+    repeated Member Members = 2; // 成员信息列表
+}
+
+message PrivateInfo
+{
+    optional bytes selfparam = 1;
+}
+
+

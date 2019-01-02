@@ -1,0 +1,15 @@
+
+# Visual Studio specific files
+
+*.sdf
+*.opensdf
+*.suo
+*.user
+*.aps
+*.VC.db
+*.opendb
+
+# Build results
+
+[Dd]ebug/
+[Rr]elease/

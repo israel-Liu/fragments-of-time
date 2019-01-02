@@ -1,0 +1,22 @@
+{
+  "name": "watching_together",
+  "version": "1.0.0",
+  "description": "we will watching together",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/israel-Liu/watching_together.git"
+  },
+  "author": "Israel-Liu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/israel-Liu/watching_together/issues"
+  },
+  "homepage": "https://github.com/israel-Liu/watching_together#readme",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  }
+}

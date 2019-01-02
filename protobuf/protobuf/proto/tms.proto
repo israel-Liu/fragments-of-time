@@ -1,0 +1,101 @@
+package tms;
+
+// server message
+
+message StateServerReq
+{
+	enum cmd{
+		ChatMsgIDALL=1;
+		TalkMsgIDALL=2;
+		UserMsgIDALL=3;
+		TargetInfoALL=4;
+		TargtServerIDALL=5;
+		UserLoginFlagALL=6;
+	}
+	required cmd ncmd = 1;
+}
+
+message ServerInfo
+{
+    required uint32 uServerID = 1;
+	required string strServerIP = 2;
+	required uint32 usServerPort = 3;
+}
+
+message ServerOut
+{
+    required uint32 uServerID = 1;
+}
+
+message ServerInfoList
+{
+    repeated ServerInfo ServerInfos = 1;
+}
+message TargtServerID
+{
+    required uint32 uTargetID = 1[default = 0];
+	required uint32 uServerID = 2[default = 0];
+}
+message TargtServerIDList
+{
+    repeated TargtServerID TargtServerIDs = 1;
+}
+
+message TargetOnlineInfo
+{
+	required uint32 uAccountID = 1[default = 0];
+    required uint32 uSessionID = 2[default = 0];
+}
+
+
+message UserLoginFlag
+{
+	required uint32 uAccountID = 1[default = 0];
+	required uint32 uLoginFlags =2[default = 0];
+}
+
+message UserLoginFlagList
+{
+    repeated UserLoginFlag UserLoginFlags = 1;
+}
+
+message UserOnlineNotify
+{
+    required uint32 uAccountID = 1[default = 0];
+	required uint32 uServerID = 2[default = 0];
+    required uint32 uLoginFlag = 3[default = 0];
+}
+
+message TalkMsgBaseList
+{
+    message TalkMsgBase
+	{
+		required uint64 uTalkID = 1[default = 0];
+		required uint32 uMsgID = 2[default = 0];
+	}
+	
+	repeated TalkMsgBase TalkMsgBases = 1;
+}
+
+message ChatMsgBaseList
+{
+    message ChatMsgBase
+	{
+		required uint32 uChatID = 1[default = 0];
+		required uint32 uMsgID = 2[default = 0];
+	}
+	
+	repeated ChatMsgBase ChatMsgBases = 1;
+}
+
+message UserMsgIDList
+{
+    message UserMsgID
+	{
+		required uint32 uSendID = 1[default = 0];
+		required uint32 uTargetID = 2[default = 0];
+		required uint32 uMsgID = 3[default = 0];
+	}
+	
+	repeated UserMsgID UserMsgIDs = 1;
+}

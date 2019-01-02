@@ -1,0 +1,384 @@
+import "base.proto";
+package tms;
+
+// 用户私有字段
+message UTargetSelfparam
+{
+    required bytes strNickName = 1; // 昵称
+}
+
+// 用户好友列表
+message UserTargets
+{
+    repeated UTarget UTargets = 1;
+}
+
+message UTargetInfo
+{
+    required Targets Targets = 1;
+    optional uint32 uRight = 2[default = 0]; //权限
+	optional bytes selfparam = 3;
+}
+
+message UTargetInfos
+{
+    repeated UTargetInfo UTargetInfos = 1;
+}
+
+
+// 用户私有信息
+message UserPrivateInfo
+{
+    optional uint32 nGender = 1[default = 0]; // 性别
+    optional uint32 uBirthday = 2[default = 0]; // 生日
+    optional uint32 utmRegtime = 3[default = 0];
+    optional uint32 nClientType = 4[default = 0];
+	
+    optional bytes strSigature = 5;
+	optional bytes strCountry = 6; // 国家
+	optional bytes strProvince = 7; // 省份
+	optional bytes strCity = 8; // 城市
+	optional bytes strPhone = 9; // 电话
+	optional bytes strMobile = 10; // 手机
+	optional bytes strOccupation = 11; // 职业
+	optional bytes strCollege = 12; // 毕业院校
+	optional bytes strEmail = 13; // 邮箱
+	optional bytes strHomepage = 14; // 个人主页
+	optional bytes strPersonal = 15; // 个人说明
+		
+	optional uint32		nShengXiao=16;			// 生肖
+	optional uint32		nConstel=17;			// 星座
+	optional uint32		nBlood=18;				// 血型
+	optional bytes strCustomFace = 19; // 自定义头像名
+}
+
+// 用户信息
+message UserInfo
+{
+    required TargetInfo TargetInfos = 2; // 基本信息
+    optional UserPrivateInfo PrivateInfos = 3; // 私有信息
+}
+
+// 旧用户信息
+message UserInfo_Old
+{
+    required TargetInfo TargetInfos = 1; // 基本信息
+    optional UserPrivateInfo PrivateInfos = 2; // 私有信息
+	optional TargetsNotify TargetsNotifys = 3; // 好友信息
+	
+}
+
+// 用户在线信息
+message UserOnlineInfo
+{
+    required uint32 uAccountID = 1[default = 0]; // 用户id
+    required uint32 uLoginFlag = 2[default = 0]; // 终端自定义字段
+}
+
+// 登入信息
+message LoginInfo
+{
+	required string strAccountNo = 1; // 帐号
+	required string strPasswd =2; // 密码
+	optional uint32 uLoginFlags =3[default = 0]; // 终端自定义字段
+}
+
+message LoginAnsInfo
+{
+	required uint32 uAccountID = 1;
+	required uint32 uSessionID = 2;
+	required uint32 nClientType = 3[default = 0];
+}
+
+// 注册信息
+message RegisterInfo
+{
+	required string strAccountNo = 1; // 帐号
+	required string strPasswd =2; // 密码
+	required bytes strNickName=3; // 昵称
+}
+
+// 用户信息请求
+message UserInfoReq
+{
+	enum cmd{
+	    PublicInfo = 0; // 基本信息请求
+	    MemberList = 1; // 好友列表
+	    UserPrivateInfo = 2; // 私有信息
+	    UserInfo = 3; // 用户信息
+		UserInfo_Old = 4; // 旧用户信息
+		UTargetInfos = 5; // 好友信息
+	}
+	required cmd ncmd = 1[default = UserInfo];
+}
+
+// TargetInfo 查询
+message TargetsQuery
+{
+	required string strAccountNo = 1; // 帐号
+	required bytes strNickName = 2; // 昵称
+}
+
+// 更新用户信息
+message UpdateUserInfo
+{
+	optional bytes strNickName = 1; // 昵称
+	optional uint32 nFace = 2[default = 0]; // 表情
+	optional UserPrivateInfo PrivateInfos = 3; // 私有信息
+}
+
+// Targets添加
+message TargetsAdd
+{
+	enum cmd{
+	    Apply = 0; // 申请
+	    Applied = 1;
+	    Agree = 2; // 同意
+	    Agreed = 3;
+	    Refuse = 4; // 拒绝
+	    Refused = 5;
+	    Delete = 6; // 删除
+	    Deleted = 7;
+	    Fail = 8;
+	}
+	required uint32 uTargetID = 1[default = 0]; // Targets ID
+	required cmd ncmd = 2[default = Apply];
+}
+
+// 更新TargetInfo
+message UpdateTargetInfo
+{
+	required uint32 uTargetID  = 1[default = 0];
+	optional bytes strNickName = 2;
+	optional bytes selfparam = 3;
+}
+
+// 用户信息通知
+message UserInfoNotify
+{
+    required uint32 uAccountID = 1[default = 0];
+    optional string strAccountNo = 2;
+    optional bytes strNickName = 3;
+    optional uint32 nFace = 4[default = 0];
+    optional UserPrivateInfo PrivateInfos = 5;
+}
+
+// Targets添加 通知
+message TargetsAddNotify
+{
+	required TargetsAdd TargetsAdds= 1;
+	required TargetInfo TargetInfos = 3; // Targets 信息
+}
+
+// Targets 通知
+message TargetsNotify
+{
+	repeated Targets Targetss = 1;
+}
+
+// 服务器时间
+message ServerTime
+{
+    required uint64 uServerTime = 1;
+}
+
+// 文件下载信息
+message FileLoadInfo
+{
+    required bytes strName = 1;
+	required uint32 uOffset = 2;
+	required uint32 uDownsize = 3;
+	required uint32 uLocalsize = 4;
+	required uint32 uLocaltime = 5;
+	required uint32 bVersion = 6;
+}
+
+// 文件下载数据
+message FileLoadData
+{
+    required uint32 uError = 1;
+	required uint32 uFilesize = 2;
+	required uint32 uOffset = 3;
+	required uint32 uDownsize = 4;
+	required uint32 uTmmodified = 5;
+	optional bytes  szData = 6;
+}
+// server message
+
+
+// 聊天消息
+message TalkMsg 
+{
+	required uint32 uSendID = 1[default = 0];
+	required uint32 uTargetID = 2[default = 0];
+	optional uint32 uMsgID = 3[default = 0];
+	required bytes msg = 4 ;
+}
+
+// 聊天消息应答
+message TalkMsgAns 
+{
+    required uint32 uError = 1[default = 0];
+    required uint32 uTargetID = 2[default = 0];
+    required uint32 uMsgID = 3[default = 0];
+}
+// 临时聊天
+message TmpTalkMsg 
+{
+	required uint32 uTargetID = 1[default = 0];
+	required bytes strNickName = 2;
+	optional uint32 uMsgID = 3[default = 0];
+	required bytes msg = 4 ;
+}
+
+// 拉聊天信息请求
+message PullTalkMsgReq
+{
+	required uint32 uTargetID  = 1[default = 0];
+	required uint32 uMsgID = 2[default = 0];
+}
+
+// 会话消息信息通知
+message MsgInfoNotify
+{
+    message MsgInfo
+	{
+		required uint32 uTargetID  = 1[default = 0];
+		required uint32 uMsgID = 2[default = 0];
+	}
+	
+	repeated MsgInfo MsgInfos = 1;
+}
+
+
+message TalkMsgInfo
+{
+	required uint32 uTargetID  = 2[default = 0];
+	repeated TalkMsg TalkMsgs = 3; // 消息列表
+}
+
+message GroupPrivateInfo
+{
+}
+
+message JoinGTalk
+{
+    required uint32 uTargetID = 1[default = 0];
+	required uint32 uGTalkID = 2[default = 0];
+	optional TargetInfo TargetInfos = 3; // 基本信息
+}
+
+message AnsJoinGTalk
+{
+    required uint32 uTargetID = 1[default = 0];
+	required uint32 uGTalkID = 2[default = 0];
+}
+
+message QuitGTalk
+{
+    required uint32 uTargetID = 1[default = 0];
+	required uint32 uGTalkID = 2[default = 0];
+}
+
+message SysTargetInfo
+{
+    required uint32 uVersion =1[default = 0]; // 版本号
+    required uint32 uTargetID = 2[default = 0]; // 
+    optional TargetInfo objs = 3; // 基本信息
+}
+
+message SysTargetInfoList
+{
+    repeated SysTargetInfo nodes = 2; // 基本信息列表
+}
+
+message SysMemberInfo
+{
+    required uint32 uVersion =1[default = 0]; // 版本号
+    required uint32 uTargetID = 2[default = 0];
+    optional MemberInfo objs = 3; 
+}
+
+message SysMemberInfoList
+{
+    required uint32 uVersion =1[default = 0]; // 版本号
+	required uint32 uTargetID = 2[default = 0]; //  群组ID 0表示好友信息
+    repeated SysMemberInfo nodes = 3; // 成员信息列表
+}
+/*
+message SysPrivateInfo
+{
+    required uint32 uVersion =1[default = 0]; // 版本号
+    required uint32 uTargetID = 2[default = 0];
+    optional PrivateInfo PrivateInfos = 3; 
+}
+
+message SysPrivateInfoList
+{
+    repeated SysPrivateInfo SysPrivateInfos = 1; // 信息列表
+}
+*/
+message SysUserPrivateInfo
+{
+    required uint32 uVersion =1[default = 0]; // 版本号
+    required uint32 uTargetID = 2[default = 0];
+    optional UserPrivateInfo objs = 3; 
+}
+
+message SysUserPrivateInfoList
+{
+    repeated SysUserPrivateInfo nodes = 1; // 信息列表
+}
+
+
+// 同步群组信息
+message SysGroupInfo
+{
+    required uint32 uVersion =1[default = 0]; // 版本号
+    required uint32 uTargetID = 2[default = 0]; //  群组ID
+    optional GroupPrivateInfo objs = 4; // 私有信息
+}
+
+message SysGroupInfoList
+{
+    repeated SysGroupInfo nodes = 3; // 群组信息列表
+}
+
+message SysGTalkInfoList
+{
+    required uint32 uVersion =1[default = 0]; // 版本号
+    optional SysGroupInfoList objs = 3; // 群组列表
+}
+
+// 同步用户信息
+message SysUserInfo
+{
+    required uint32 uVersion =1[default = 0]; // 版本号
+    optional PrivateInfo PrivateInfos = 3; // 私有信息
+}
+
+// 同步会话消息
+message SysTalkMsg
+{
+    required uint32 uVersion = 1[default = 0];
+	required uint32 uTargetID  = 2[default = 0];
+	repeated TalkMsg nodes = 3; // 消息列表
+}
+
+message SysTalkMsgList
+{
+    repeated SysTalkMsg nodes = 1; 
+}
+
+// 会话消息信息
+message SysTargetMsgInfo
+{
+    required uint32 uVersion = 1[default = 0];
+	required uint32 uTargetID  = 2[default = 0];
+}
+
+// 会话消息信息通知
+message SysTargetMsgInfoList
+{	
+	repeated SysTargetMsgInfo nodes = 1;
+}
