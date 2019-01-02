@@ -1,0 +1,3 @@
+[submodule "brick"]
+	path = brick
+	url = https://github.com/israel-Liu/brick.git
