@@ -8,6 +8,8 @@
 *.VC.db
 *.opendb
 *.pdb
+*.obj
+*.exe
 
 # Build results
 
