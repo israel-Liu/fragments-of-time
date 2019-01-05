@@ -1,0 +1,1 @@
+// https://docs.microsoft.com/en-ca/windows/desktop/ipc/using-pipes
