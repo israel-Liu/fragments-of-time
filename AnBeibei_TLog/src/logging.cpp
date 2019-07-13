@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <thread>
 
+#include <iostream>
+
 using std::ostream;
 
 namespace {
@@ -81,7 +83,7 @@ void LogMessage::Init(const char* file, int line, LogSeverity severity)
 
 LogMessage::~LogMessage()
 {
-
+  std::cout << data_->stream_.self()->str() << std::endl;
 }
 
 ostream& LogMessage::stream()

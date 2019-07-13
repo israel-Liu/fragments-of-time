@@ -13,10 +13,47 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Test">
+      <UniqueIdentifier>{e9239556-888f-4ba0-81d7-7b849e49fff5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Petya and Strings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sort_algorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="maximum_subarray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="basic_data_structures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="test_maximum_subarray.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="test_basic_data_structures.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test_math.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="masm.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
   </ItemGroup>
 </Project>
