@@ -19,7 +19,7 @@ def main(args = None):
         os.chdir(folder)
         git.run('fetch', '-p')
         cur_branch = git.current_branch()
-        git.run('rebase', 'origin/master', cur_branch)
+        git.run('rebase', 'origin/master', cur_branch) #可以修改 origin/master 指定远端分支
         break
 ```
 
